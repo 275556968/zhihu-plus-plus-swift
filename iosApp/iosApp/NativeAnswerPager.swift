@@ -197,11 +197,6 @@ final class NativeAnswerInteractivePopObserverController: UIViewController,
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if #available(iOS 26.0, *) {
-            // iOS 26 owns both back-swipe delegates. The answer pager coordinates
-            // with them only through Apple's supported failure requirements.
-            return
-        }
         guard let navigationController,
               navigationController.viewControllers.count > 1,
               let gesture = navigationController.interactivePopGestureRecognizer
@@ -496,17 +491,7 @@ private struct QAAnswerPageController: UIViewControllerRepresentable {
             if navigationController.viewControllers.count > 1 {
                 interactivePop.isEnabled = true
             }
-            if #available(iOS 26.0, *),
-               let contentPop = navigationController.interactiveContentPopGestureRecognizer
-            {
-                let gate = contentPopGate ?? makeContentPopGate(in: pagingScrollView)
-                interactivePop.require(toFail: gate)
-                contentPop.require(toFail: gate)
-                pagePan.require(toFail: interactivePop)
-                pagePan.require(toFail: contentPop)
-            } else {
-                pagePan.require(toFail: interactivePop)
-            }
+            pagePan.require(toFail: interactivePop)
             relatedNavigationController = navigationController
             relatedPagingPan = pagePan
         }

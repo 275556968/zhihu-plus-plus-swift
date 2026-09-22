@@ -131,18 +131,9 @@ struct PersonProfileHeader: View {
 
     @ViewBuilder
     private var actions: some View {
-        if #available(iOS 26, *) {
-            GlassEffectContainer(spacing: 12) {
-                HStack(spacing: 12) {
-                    followButton.buttonStyle(.glassProminent)
-                    blockButton.buttonStyle(.glass)
-                }
-            }
-        } else {
-            HStack(spacing: 12) {
-                followButton.buttonStyle(.borderedProminent)
-                blockButton.buttonStyle(.bordered)
-            }
+        HStack(spacing: 12) {
+            followButton.buttonStyle(.borderedProminent)
+            blockButton.buttonStyle(.bordered)
         }
     }
 

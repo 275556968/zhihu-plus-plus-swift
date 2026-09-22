@@ -61,9 +61,6 @@ struct OpenZhihuSearchIntent: AppIntent {
     static let description = IntentDescription("打开知乎++并搜索内容")
     static var openAppWhenRun: Bool { true }
 
-    @available(iOS 26.0, *)
-    static var supportedModes: IntentModes { .foreground(.immediate) }
-
     @Parameter(title: "搜索内容")
     var query: String?
 
@@ -86,9 +83,6 @@ struct OpenZhihuHotIntent: AppIntent {
     static let description = IntentDescription("打开知乎++热榜")
     static var openAppWhenRun: Bool { true }
 
-    @available(iOS 26.0, *)
-    static var supportedModes: IntentModes { .foreground(.immediate) }
-
     func perform() async throws -> some IntentResult {
         await MainActor.run {
             SystemNavigationRequestCenter.shared.submit(.hot)
@@ -102,9 +96,6 @@ struct OpenZhihuCollectionsIntent: AppIntent {
     static let title: LocalizedStringResource = "打开收藏夹"
     static let description = IntentDescription("打开知乎++收藏夹")
     static var openAppWhenRun: Bool { true }
-
-    @available(iOS 26.0, *)
-    static var supportedModes: IntentModes { .foreground(.immediate) }
 
     func perform() async throws -> some IntentResult {
         await MainActor.run {

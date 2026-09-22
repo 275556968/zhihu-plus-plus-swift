@@ -6,19 +6,11 @@ struct PersonTabSelector: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            if #available(iOS 26, *) {
-                GlassEffectContainer(spacing: 8) {
-                    tabs
-                }
+            tabs
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
-            } else {
-                tabs
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(.ultraThinMaterial, in: Capsule())
-                    .padding(.horizontal, 4)
-            }
+                .background(.ultraThinMaterial, in: Capsule())
+                .padding(.horizontal, 4)
         }
         .accessibilityIdentifier("person_main_tabs")
     }
@@ -63,23 +55,12 @@ private struct PersonGlassTabButtonStyle: ButtonStyle {
 
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {
-        if #available(iOS 26, *) {
-            configuration.label
-                .padding(.horizontal, 14)
-                .frame(minHeight: 38)
-                .glassEffect(
-                    isSelected ? .regular.tint(.accentColor).interactive() : .regular.interactive(),
-                    in: .capsule
-                )
-                .opacity(configuration.isPressed ? 0.78 : 1)
-        } else {
-            configuration.label
-                .foregroundStyle(isSelected ? Color.white : Color.primary)
-                .padding(.horizontal, 14)
-                .frame(minHeight: 38)
-                .background(isSelected ? Color.accentColor : Color.secondary.opacity(0.1), in: Capsule())
-                .opacity(configuration.isPressed ? 0.78 : 1)
-        }
+        configuration.label
+            .foregroundStyle(isSelected ? Color.white : Color.primary)
+            .padding(.horizontal, 14)
+            .frame(minHeight: 38)
+            .background(isSelected ? Color.accentColor : Color.secondary.opacity(0.1), in: Capsule())
+            .opacity(configuration.isPressed ? 0.78 : 1)
     }
 }
 

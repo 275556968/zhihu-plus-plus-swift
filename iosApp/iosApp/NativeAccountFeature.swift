@@ -339,15 +339,8 @@ struct NativeAccountView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             if NativeRootCompactTitle.shouldRender(collapseProgress: titleCollapseProgress) {
-                if #available(iOS 26.0, *) {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        NativeRootCompactTitle("账号", collapseProgress: titleCollapseProgress)
-                    }
-                    .sharedBackgroundVisibility(.hidden)
-                } else {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        NativeRootCompactTitle("账号", collapseProgress: titleCollapseProgress)
-                    }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NativeRootCompactTitle("账号", collapseProgress: titleCollapseProgress)
                 }
             }
         }

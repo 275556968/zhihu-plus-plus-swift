@@ -90,13 +90,7 @@ struct NativeMediaGallery: View {
 
     @ViewBuilder
     private var topControls: some View {
-        if #available(iOS 26, *) {
-            GlassEffectContainer(spacing: 10) {
-                controls
-            }
-        } else {
-            controls
-        }
+        controls
     }
 
     private var controls: some View {
@@ -278,22 +272,14 @@ private struct NativeMediaControlButton: View {
 private struct NativeMediaControlSurface: ViewModifier {
     @ViewBuilder
     func body(content: Content) -> some View {
-        if #available(iOS 26, *) {
-            content.glassEffect(.regular.interactive(), in: .circle)
-        } else {
-            content.background(.ultraThinMaterial, in: Circle())
-        }
+        content.background(.ultraThinMaterial, in: Circle())
     }
 }
 
 private struct NativeMediaIndicatorSurface: ViewModifier {
     @ViewBuilder
     func body(content: Content) -> some View {
-        if #available(iOS 26, *) {
-            content.glassEffect(.regular, in: .capsule)
-        } else {
-            content.background(.ultraThinMaterial, in: Capsule())
-        }
+        content.background(.ultraThinMaterial, in: Capsule())
     }
 }
 

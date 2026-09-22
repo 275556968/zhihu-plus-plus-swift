@@ -243,19 +243,11 @@ private struct QuestionActionBar: View {
     let onShare: () -> Void
 
     var body: some View {
-        Group {
-            if #available(iOS 26, *) {
-                GlassEffectContainer(spacing: 4) {
-                    actions.buttonStyle(.glass)
-                }
-            } else {
-                actions
-                    .padding(7)
-                    .background(.ultraThinMaterial, in: Capsule())
-            }
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 7)
+        actions
+            .padding(7)
+            .background(.ultraThinMaterial, in: Capsule())
+            .padding(.horizontal, 16)
+            .padding(.vertical, 7)
     }
 
     private var actions: some View {
