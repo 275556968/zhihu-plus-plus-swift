@@ -501,6 +501,7 @@ struct NativeAppShell: View {
     private func tabNavigationStack(for tab: NativeAppTab) -> some View {
         NavigationStack(path: navigation.binding(for: tab)) {
             rootContent(for: tab)
+                .toolbar(navigation.isAtRoot(in: tab) ? .visible : .hidden, for: .tabBar)
                 .navigationDestination(for: NativeShellRoute.self) { destination($0, in: tab) }
         }
     }
